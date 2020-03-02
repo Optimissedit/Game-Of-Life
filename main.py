@@ -22,9 +22,8 @@ draw_list = []
 # Boolean variable to control main loop
 clock = pg.time.Clock()
 
-# Size of cells, also amount to add/subtract to find neighbors
 
-
+# Takes x,y coords from cell objects and creates rects to be drawn later
 def get_world_rect():
     for obj in world:
         temp = pg.Rect((obj.x, obj.y), (obj.size, obj.size))
@@ -46,6 +45,7 @@ def main(running):
         for cell in draw_list:
             pg.draw.rect(screen, RED, cell)
 
+        draw_list.clear()
         pg.display.flip()
 
 
@@ -56,6 +56,8 @@ for val in world:
     test = val.get_neighbors()
     break
 for cell in test:
+    temp = cell.counter(world)
     print(cell)
+    print(temp)
 
 pg.quit()
